@@ -1,0 +1,29 @@
+.json-area{
+    max-width: 30%;
+    width: 100%;
+    height: 90vh;
+    border: 1px solid #000;
+    overflow: scroll;
+}
+.content-aria{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.pannel{
+    margin-bottom: 20px;
+}
+.redLine{
+    color: #a31515;
+}
+.blueLine{
+    color: #0451a5;
+}
+.updated{
+    background: #ebf1dc;
+}
+.json-area{
+    font-family: Consolas, Courier New, monospace; 
+    font-size: 12px; 
+    white-space: pre;
+}
