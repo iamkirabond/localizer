@@ -21,6 +21,7 @@
 }
 .updated{
     background: #ebf1dc;
+    width: fit-content;
 }
 .json-area{
     font-family: Consolas, Courier New, monospace; 
