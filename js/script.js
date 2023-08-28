@@ -10,14 +10,20 @@ let textToUpdate = []
 
 
 function getLocalizationText(){
-    let unsortedTableContent = localization_content.innerText.split('\n')
-    
-    unsortedTableContent.forEach((line, index) => {
-        let splitedLine = line.split('\t')
-        if (splitedLine[0].length > 0){
-            tableContent.push(splitedLine)
-        }          
+    let lines = [].slice.call(localization_content.getElementsByTagName("tr"))
+
+
+    lines.forEach(line =>{
+        let arr = [
+            line.getElementsByTagName("td")[0].innerText.replace(/\n|\r/g, "",).replace(/\u00a0/g, " "), 
+            line.getElementsByTagName("td")[1].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ")
+        ]
+
+        if (arr[0].length > 0){
+            tableContent.push(arr)
+        }   
     })
+
     tableContent.sort(function(a, b){
         return b.length - a.length;
     });
@@ -27,13 +33,14 @@ function getLocalizationText(){
 function updateLocalCopy(){
     textToUpdate = localCopyOfinitialJson.innerText.split('\n')
 
-    tableContent.forEach((values,index) => {
+    tableContent.forEach((values) => {
         let oldLine = values[0]
         let newLine = values[1]
 
         textToUpdate.forEach((line, index) => {
+            console.log(oldLine, newLine,line.includes(oldLine, newLine))
             line = line.replace(/\u00a0/g, " ")
-            if (line.includes(oldLine)){
+            if (line.includes(oldLine, newLine)){
                 textToUpdate[index] = line.replace(oldLine, newLine)
             }
         })
@@ -87,13 +94,14 @@ function initValues(){
 
 function compareBeforeAndAfter(){
     let initial_lines = localCopyOfinitialJson.innerText.split('\n')
-    let final_lines = final_json.innerText.split('\n')
+
     final_json.childNodes.forEach((line) =>{
         line.classList.remove('updated')
     })
     
     initial_lines.forEach((line, index) => {
         if(line != final_json.childNodes[index].innerText){ 
+            console.log(line, final_json.childNodes[index].innerText)
             final_json.childNodes[index].classList.add('updated')            
         }    
     })
