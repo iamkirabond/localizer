@@ -25,7 +25,7 @@ function getLocalizationText(){
     })
 
     tableContent.sort(function(a, b){
-        return b.length - a.length;
+        return b[0].length - a[0].length;
     });
 }
 
@@ -38,7 +38,6 @@ function updateLocalCopy(){
         let newLine = values[1]
 
         textToUpdate.forEach((line, index) => {
-            console.log(oldLine, newLine,line.includes(oldLine, newLine))
             line = line.replace(/\u00a0/g, " ")
             if (line.includes(oldLine, newLine)){
                 textToUpdate[index] = line.replace(oldLine, newLine)
@@ -101,7 +100,6 @@ function compareBeforeAndAfter(){
     
     initial_lines.forEach((line, index) => {
         if(line != final_json.childNodes[index].innerText){ 
-            console.log(line, final_json.childNodes[index].innerText)
             final_json.childNodes[index].classList.add('updated')            
         }    
     })
