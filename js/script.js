@@ -15,8 +15,8 @@ function getLocalizationText(){
 
     lines.forEach(line =>{
         let arr = [
-            line.getElementsByTagName("td")[0].innerText.replace(/\n|\r/g, "",).replace(/\u00a0/g, " "), 
-            line.getElementsByTagName("td")[1].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ")
+            line.getElementsByTagName("td")[0].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").split(" ").join(" "),
+            line.getElementsByTagName("td")[1].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").split(" ").join(" ")
         ]
 
         if (arr[0].length > 0){
@@ -38,7 +38,7 @@ function updateLocalCopy(){
         let newLine = values[1]
 
         textToUpdate.forEach((line, index) => {
-            line = line.replace(/\u00a0/g, " ")
+            line = line.replace(/<.*?>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").replace(/" /g, "\"")
             if (line.includes(oldLine, newLine)){
                 textToUpdate[index] = line.replace(oldLine, newLine)
             }
