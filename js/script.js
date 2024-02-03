@@ -103,9 +103,7 @@ function compareBeforeAndAfter(){
     final_json.childNodes.forEach((line) =>{
         line.classList.remove('updated')
     })
-    console.log(initial_lines, final_json)
     initial_lines.forEach((line, index) => {
-        console.log(line)
         if(line != final_json.childNodes[index].innerText){ 
             final_json.childNodes[index].classList.add('updated')            
         }    
