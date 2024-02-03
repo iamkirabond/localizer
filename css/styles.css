@@ -1,3 +1,7 @@
+body {
+    background: #f8f8f8;
+    font-family: 'Open Sans', sans-serif;
+}
 .json-area{
     max-width: 30%;
     width: 100%;
@@ -27,4 +31,17 @@
     font-family: Consolas, Courier New, monospace; 
     font-size: 12px; 
     white-space: pre;
+    background: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.button {
+    border: none;
+    height: 35px;
+    width: 150px;
+    background: #d9d8fa;
+    color: #242b3b;
+    border-radius: 6px;
 }
