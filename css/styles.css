@@ -2,34 +2,41 @@ body {
     background: #f8f8f8;
     font-family: 'Open Sans', sans-serif;
 }
-.json-area{
+
+.json-area {
     max-width: 30%;
     width: 100%;
     height: 90vh;
     border: 1px solid #000;
     overflow: scroll;
 }
-.content-aria{
+
+.content-aria {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.pannel{
+
+.pannel {
     margin-bottom: 20px;
 }
-.redLine{
+
+.redLine {
     color: #a31515;
 }
-.blueLine{
+
+.blueLine {
     color: #0451a5;
 }
-.updated{
+
+.updated {
     background: #ebf1dc;
     width: fit-content;
 }
-.json-area{
-    font-family: Consolas, Courier New, monospace; 
-    font-size: 12px; 
+
+.json-area {
+    font-family: Consolas, Courier New, monospace;
+    font-size: 12px;
     white-space: pre;
     background: white;
     border: none;
@@ -44,4 +51,5 @@ body {
     background: #d9d8fa;
     color: #242b3b;
     border-radius: 6px;
+    cursor: pointer;
 }
