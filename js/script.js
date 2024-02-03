@@ -12,21 +12,27 @@ let textToUpdate = []
 function getLocalizationText(){
     let lines = [].slice.call(localization_content.getElementsByTagName("tr"))
 
-
     lines.forEach(line =>{
-        let arr = [
-            line.getElementsByTagName("td")[0].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").split(" ").join(" "),
-            line.getElementsByTagName("td")[1].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").split(" ").join(" ")
-        ]
+        let arr = []
+        
+        if (line.getElementsByTagName("td")[0]){
+            arr = [
+                line.getElementsByTagName("td")[0].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").split(" ").join(" "),
+                line.getElementsByTagName("td")[1].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").split(" ").join(" ")
+            ]
 
-        if (arr[0].length > 0){
-            tableContent.push(arr)
-        }   
+            if (arr[0].length > 0){
+                tableContent.push(arr)
+            } 
+        }
+          
     })
 
     tableContent.sort(function(a, b){
         return b[0].length - a[0].length;
     });
+
+    console.log(tableContent)
 }
 
 
@@ -38,7 +44,7 @@ function updateLocalCopy(){
         let newLine = values[1]
 
         textToUpdate.forEach((line, index) => {
-            line = line.replace(/<.*?>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").replace(/" /g, "\"")
+            line = line.replace(/\u00a0/g, " ")
             if (line.includes(oldLine, newLine)){
                 textToUpdate[index] = line.replace(oldLine, newLine)
             }
@@ -97,8 +103,9 @@ function compareBeforeAndAfter(){
     final_json.childNodes.forEach((line) =>{
         line.classList.remove('updated')
     })
-    
+    console.log(initial_lines, final_json)
     initial_lines.forEach((line, index) => {
+        console.log(line)
         if(line != final_json.childNodes[index].innerText){ 
             final_json.childNodes[index].classList.add('updated')            
         }    
@@ -116,6 +123,7 @@ localization_start.onclick = function() {
 
 window.onclick = function() {
     if(initialJson.innerText.length > 0 && localization_content.innerText.length > 0){
+        initValues()
         compareBeforeAndAfter()
     }
 }
