@@ -1,3 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localizer</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="pannel">
+        <button id="localization-start" class="button">Localize</button>
+    </div>
+    
+    <div class="content-area">
+        <div class="json-area">
+            <label class="area-label">Component Source Code (.json)</label>
+            <div class="json-area__field ignore-styles" id="initial-json" contenteditable="true" style="outline:0px;"></div>
+        </div>
+        <div class="json-area">
+            <label class="area-label">Copydeck ENG</label>
+            <div class="json-area__field" id="localization-content-eng" contenteditable="true" style="outline:0px;"></div>
+        </div>
+        <div class="json-area">
+            <label class="area-label">Copydeck NON-ENG<span class="json-area-error" style="display: none;" id="noneng-error"></span></label>
+            
+            <div class="json-area__field" id="localization-content-noneng" contenteditable="true" style="outline:0px;"></div>
+        </div>
+        <template id="template-final-json-area">
+            <div class="json-area">
+                <label class="area-label">Component Updated Code (.json)</label>
+                <div class="json-area__field ignore-styles" contenteditable="true" style="outline:0px;"></div>
+            </div>
+        </template>        
+    </div>
+    </div>
+    <script src="./js/script.js"></script>
+</body>
+</html>
+
+
 <!--<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,42 +63,4 @@
 </body>
 </html>
 -->
-
-
-
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Localizer</title>
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="pannel">
-        <button id="localization-start" class="button">Localize</button>
-    </div>
-    
-    <div class="content-area">
-        <div class="json-area">
-            <label class="area-label">Component Source Code (.json)</label>
-            <div class="json-area__field ignore-styles" id="initial-json" contenteditable="true" style="outline:0px;"></div>
-        </div>
-        <div class="json-area">
-            <label class="area-label">Copydeck</label>
-            <div class="json-area__field" id="localization-content" contenteditable="true" style="outline:0px;"></div>
-        </div>
-        <div class="json-area">
-            <label class="area-label">Component Updated Code (.json)</label>
-            <div class="json-area__field ignore-styles" id="final-json" contenteditable="true" style="outline:0px;"></div>
-        </div>
-    </div>
-    </div>
-    <script src="./js/script.js"></script>
-</body>
-</html>
-
 
