@@ -4,7 +4,6 @@ body {
 }
 
 .json-area {
-  max-width: 33%;
   min-width: 400px;
   width: 100%;
   border: 1px solid #000;
@@ -30,6 +29,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
+  margin-bottom: 50px;
 }
 
 .pannel {

@@ -1,37 +1,16 @@
-let localization_content_eng = document.getElementById(
-  "localization-content-eng"
-);
-let localization_content_noneng = document.getElementById(
-  "localization-content-noneng"
-);
+let localization_content = document.getElementById("localization-content");
 let initialJson = document.getElementById("initial-json");
 let localization_start = document.getElementById("localization-start");
 let localCopyOfinitialJson = document.getElementById("initial-json");
-let contentArea = document.querySelector(".content-area");
+let contentArea = document.querySelector("#final-json-area");
 let templateFinalJson = document.querySelector("#template-final-json-area");
 
 let updatedLocalCopy = [];
 let finalJsonCount = 0;
 
-function validateTables() {
-  let linesENG = [].slice.call(
-    localization_content_eng.getElementsByTagName("tr")
-  );
-  let linesNONENG = [].slice.call(
-    localization_content_noneng.getElementsByTagName("tr")
-  );
-  if (linesENG.length !== linesNONENG.length) {
-    let errorElement = document.querySelector("#noneng-error");
-    errorElement.innerText = " - Таблицы должны совпадать по количеству строк";
-    errorElement.style.display = "inline";
-    return false;
-  }
-  return true;
-}
-
 function getENGLocalizationText(content) {
   let lines = [].slice.call(content.getElementsByTagName("tr"));
-  let clearedTDText = clearLocalizationText({ lines: lines });
+  let clearedTDText = clearLocalizationText({ lines: lines, column: 0 });
   return clearedTDText;
 }
 
@@ -39,8 +18,8 @@ function getNONENGLocalizationText(content) {
   let result = [];
   let lines = [].slice.call(content.getElementsByTagName("tr"));
   let countColumns = lines[0].getElementsByTagName("td").length;
-  finalJsonCount = countColumns;
-  for (let i = 0; i < countColumns; i++) {
+  finalJsonCount = countColumns - 1;
+  for (let i = 1; i < countColumns; i++) {
     let clearedTDText = clearLocalizationText({ lines: lines, column: i });
     result.push(clearedTDText);
   }
@@ -65,10 +44,11 @@ function clearLocalizationText({ lines, column = 0 }) {
 }
 
 function updateLocalCopy() {
-  let tableContentENG = getENGLocalizationText(localization_content_eng);
-  let tableContentNONENG = getNONENGLocalizationText(
-    localization_content_noneng
-  );
+  updatedLocalCopy = [];
+  let tableContentENG = getENGLocalizationText(localization_content);
+  let tableContentNONENG = getNONENGLocalizationText(localization_content);
+  console.log(tableContentENG);
+  console.log(tableContentNONENG);
 
   tableContentNONENG.forEach((column) => {
     let textToUpdate = localCopyOfinitialJson.innerText.split("\n");
@@ -97,6 +77,7 @@ function updateLocalCopy() {
 }
 
 function createNewJsonIntoArea() {
+  contentArea.querySelectorAll("div").forEach((child) => child.remove());
   for (let i = 0; i < finalJsonCount; i++) {
     let template = templateFinalJson.content.cloneNode(true);
     let div = template.querySelector(".json-area__field");
@@ -156,12 +137,10 @@ function compareBeforeAndAfter() {
 }
 
 localization_start.onclick = function () {
-  if (validateTables()) {
-    updateLocalCopy();
-    createNewJsonIntoArea();
-    insertNewJsonIntoArea();
-    compareBeforeAndAfter();
-  }
+  updateLocalCopy();
+  createNewJsonIntoArea();
+  insertNewJsonIntoArea();
+  compareBeforeAndAfter();
 };
 
 // window.onclick = function() {
