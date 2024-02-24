@@ -17,8 +17,8 @@ function getLocalizationText(){
         
         if (line.getElementsByTagName("td")[0]){
             arr = [
-                line.getElementsByTagName("td")[0].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").split(" ").join(" "),
-                line.getElementsByTagName("td")[1].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").split(" ").join(" ")
+                line.getElementsByTagName("td")[0].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").split(" ").join(" ").replace("• ", ""),
+                line.getElementsByTagName("td")[1].innerText.replace(/\n|\r/g, "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").split(" ").join(" ").replace("• ", "")
             ]
 
             if (arr[0].length > 0){
