@@ -4,6 +4,7 @@ let localization_start = document.getElementById("localization-start");
 let localCopyOfinitialJson = document.getElementById("initial-json");
 let contentArea = document.querySelector("#final-json-area");
 let templateFinalJson = document.querySelector("#template-final-json-area");
+let checkInitialTags = document.querySelector("#initial-json-tags");
 
 let updatedLocalCopy = [];
 let finalJsonCount = 0;
@@ -61,10 +62,10 @@ function updateLocalCopy() {
         let key = line.split('": "')[0];
         let value = line.split('": "')[1];
         if (value) {
-          value = value
-            .replace(/<.*?>/g, "")
-            .replace(/&nbsp;/g, " ")
-            .replace(/\u00a0/g, " ");
+          value = value.replace(/&nbsp;/g, " ").replace(/\u00a0/g, " ");
+          if (checkInitialTags.checked === true) {
+            value = value.replace(/<.*?>/g, "");
+          }
           if (value.includes(oldLine, newLine)) {
             textToUpdate[index] =
               key + '": "' + value.replace(oldLine, newLine);
