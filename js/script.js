@@ -37,7 +37,8 @@ function clearLocalizationText({ lines, column = 0 }) {
         .replace(/\u00a0/g, " ")
         .replace(/\s+/g, " ")
         .split(" ")
-        .join(" "),
+        .join(" ")
+        .replace("• ", ""),
     ];
     arr.push(arrItem);
   });
