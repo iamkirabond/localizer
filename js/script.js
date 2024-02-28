@@ -11,7 +11,7 @@ let finalJsonCount = 0;
 
 function getENGLocalizationText(content) {
   let lines = [].slice.call(content.getElementsByTagName("tr"));
-  let clearedTDText = clearLocalizationText({ lines: lines, column: 0 });
+  let clearedTDText = clearLocalizationText({ lines: lines, column: 0, shield: false });
   return clearedTDText;
 }
 
@@ -21,13 +21,13 @@ function getNONENGLocalizationText(content) {
   let countColumns = lines[0].getElementsByTagName("td").length;
   finalJsonCount = countColumns - 1;
   for (let i = 1; i < countColumns; i++) {
-    let clearedTDText = clearLocalizationText({ lines: lines, column: i });
+    let clearedTDText = clearLocalizationText({ lines: lines, column: i, shield: true });
     result.push(clearedTDText);
   }
   return result;
 }
 
-function clearLocalizationText({ lines, column = 0 }) {
+function clearLocalizationText({ lines, column = 0, shield = false }) {
   let arr = [];
   lines.forEach((line) => {
     let arrItem = [
@@ -40,6 +40,9 @@ function clearLocalizationText({ lines, column = 0 }) {
         .join(" ")
         .replace("• ", ""),
     ];
+    if (shield === true) {
+      arrItem[0] = arrItem[0].replaceAll('"', '\\"')    
+    }
     arr.push(arrItem);
   });
   return arr;
