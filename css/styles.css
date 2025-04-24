@@ -92,3 +92,24 @@ body {
   margin-bottom: 10px;
   color: red;
 }
+
+.notify {
+  position:fixed;
+  right:2rem;
+  bottom:2rem;
+  padding:.8rem 1.2rem;
+  border-radius:.4rem;
+  font-weight:600;
+  color:#fff;
+  z-index:999
+}
+.notify.ok   {
+  background:#28a745;
+}
+.notify.error {
+  background:#dc3545;
+}
+.hidden {
+  display:none
+}
+
