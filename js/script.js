@@ -86,6 +86,7 @@ function createNewJsonIntoArea() {
   for (let i = 0; i < finalJsonCount; i++) {
     let template = templateFinalJson.content.cloneNode(true);
     let div = template.querySelector(".json-area__field");
+    template.querySelector(".area-label").innerText = `Component Updated Code (.json) - ${i + 1}`;
     div.id = `final-json-${i}`;
     contentArea.appendChild(template);
   }
